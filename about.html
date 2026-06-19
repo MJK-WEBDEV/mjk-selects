@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | MJK Selects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f172a;
+            --accent: #3b82f6;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fff;
+            color: var(--primary);
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        /* HERO */
+        .hero {
+            margin-top: 70px;
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* CONTENT */
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+
+        .content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .content p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .content ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        .content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box {
+            background: var(--light);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 5% 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MJK<span>Selects</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#products">Products</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>About <span>MJK Selects</span></h1>
+        <p>Handpicked tech recommendations from a passionate 14-year-old developer</p>
+    </section>
+
+    <div class="content">
+        <h2>Our Story</h2>
+        <p>MJK Selects started as a simple idea: what if finding the best tech products wasn't so overwhelming? I'm Jasir, a 14-year-old web developer from Pakistan, and I built this site to help people discover top-rated phones, laptops, wearables, and gaming gear without spending hours researching.</p>
+
+        <p>Every product on this site is personally researched. I compare specs, read thousands of real user reviews, and track price drops so you don't have to. When you click through and buy something, I earn a small commission from Amazon — at no extra cost to you.</p>
+
+        <div class="highlight-box">
+            <h3>Why Trust Us?</h3>
+            <p>We only recommend products we'd actually buy. No paid placements. No sponsored posts. Just honest picks.</p>
+        </div>
+
+        <h2>How It Works</h2>
+        <ul>
+            <li><strong>Research:</strong> We monitor Amazon's best-sellers, new releases, and price drops daily</li>
+            <li><strong>Curate:</strong> Each product is evaluated for value, quality, and real user feedback</li>
+            <li><strong>Recommend:</strong> We present the best options with direct Amazon links</li>
+            <li><strong>You Save:</strong> Click through to get the best current price</li>
+        </ul>
+
+        <h2>Transparency</h2>
+        <p>MJK Selects participates in the Amazon Associates Program. This means we earn commissions on qualifying purchases made through our links. This helps us keep the site running and continue finding great products for you.</p>
+
+        <p>Our opinions are independent. We don't let affiliate partnerships influence our recommendations. If a product is bad, we won't recommend it — period.</p>
+
+        <h2>Connect With Us</h2>
+        <p>Have a product suggestion or question? Want to collaborate? Reach out through our <a href="contact.html" style="color: var(--accent);">Contact page</a> or find us on TikTok and Instagram.</p>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#products">Products</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+        </div>
+        <p>© 2026 MJK Selects. Built with passion by a 14-year-old who loves tech.</p>
+    </footer>
+
+</body>
+</html>
