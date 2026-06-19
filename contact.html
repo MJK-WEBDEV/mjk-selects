@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | MJK Selects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f172a;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fff;
+            color: var(--primary);
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .hero {
+            margin-top: 70px;
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+
+        .content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .content p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .contact-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .contact-card p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        .email-highlight {
+            background: var(--light);
+            border: 2px solid var(--accent);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .email-highlight h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .email-highlight a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .email-highlight a:hover {
+            text-decoration: underline;
+        }
+
+        .form-section {
+            background: var(--light);
+            padding: 2.5rem;
+            border-radius: 16px;
+            margin-top: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+        }
+
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 5% 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MJK<span>Selects</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#products">Products</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>Get In <span>Touch</span></h1>
+        <p>Have a question, suggestion, or collaboration idea? We'd love to hear from you.</p>
+    </section>
+
+    <div class="content">
+        <h2>Contact Us</h2>
+        <p>We value every message from our community. Whether you have a product suggestion, found a bug, or want to collaborate — drop us a line.</p>
+
+        <div class="email-highlight">
+            <h3>Email Us Directly</h3>
+            <a href="mailto:jasir202511@gmail.com">jasir202511@gmail.com</a>
+            <p style="margin-top: 1rem; color: var(--gray);">We typically respond within 24-48 hours</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3>Product Suggestions</h3>
+                <p>Know a great product we should feature?</p>
+                <a href="mailto:jasir202511@gmail.com?subject=Product%20Suggestion">Send Suggestion →</a>
+            </div>
+            <div class="contact-card">
+                <h3>Business Inquiries</h3>
+                <p>Collaborations, partnerships, or press</p>
+                <a href="mailto:jasir202511@gmail.com?subject=Business%20Inquiry">Get in Touch →</a>
+            </div>
+            <div class="contact-card">
+                <h3>Support</h3>
+                <p>Issues with the site or affiliate links?</p>
+                <a href="mailto:jasir202511@gmail.com?subject=Support%20Request">Report Issue →</a>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Send a Message</h2>
+            <p style="color: var(--gray); margin-bottom: 1.5rem;">Fill out the form below and we'll get back to you via email.</p>
+            
+            <form action="mailto:jasir202511@gmail.com" method="POST" enctype="text/plain">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="Product suggestion, question, etc." required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us what's on your mind..." required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#products">Products</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+        </div>
+        <p>© 2026 MJK Selects. Built with passion by a 14-year-old who loves tech.</p>
+    </footer>
+
+</body>
+</html>
