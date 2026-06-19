@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MJK Selects | Top Tech & Gear Picks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f172a;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --gold: #f59e0b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fff;
+            color: var(--primary);
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* HERO */
+        .hero {
+            margin-top: 70px;
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid var(--accent);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+
+        /* CATEGORIES */
+        .categories {
+            padding: 3rem 5%;
+            background: var(--light);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .cat-btn {
+            padding: 0.7rem 1.5rem;
+            border: 2px solid var(--border);
+            background: white;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cat-btn:hover, .cat-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        /* PRODUCTS */
+        .section {
+            padding: 4rem 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        /* CSS GENERATED PRODUCT VISUALS */
+        .product-visual {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visual-bg {
+            position: absolute;
+            inset: 0;
+            opacity: 0.15;
+        }
+
+        .visual-bg.phones { background: radial-gradient(circle at 30% 50%, #667eea 0%, transparent 70%); }
+        .visual-bg.laptops { background: radial-gradient(circle at 70% 50%, #f5576c 0%, transparent 70%); }
+        .visual-bg.wearables { background: radial-gradient(circle at 50% 30%, #00f2fe 0%, transparent 70%); }
+        .visual-bg.audio { background: radial-gradient(circle at 40% 60%, #38f9d7 0%, transparent 70%); }
+        .visual-bg.gaming { background: radial-gradient(circle at 60% 40%, #fee140 0%, transparent 70%); }
+
+        .device-shape {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Phone Shape */
+        .phone-shape {
+            width: 70px;
+            height: 130px;
+            border: 3px solid rgba(255,255,255,0.9);
+            border-radius: 14px;
+            position: relative;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .phone-shape::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 4px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 2px;
+        }
+
+        .phone-shape::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 50%;
+        }
+
+        /* Laptop Shape */
+        .laptop-shape {
+            width: 120px;
+            height: 75px;
+            border: 3px solid rgba(255,255,255,0.9);
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .laptop-shape::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: -10px;
+            right: -10px;
+            height: 8px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 0 0 4px 4px;
+        }
+
+        /* Watch Shape */
+        .watch-shape {
+            width: 60px;
+            height: 80px;
+            border: 3px solid rgba(255,255,255,0.9);
+            border-radius: 16px;
+            position: relative;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .watch-shape::before,
+        .watch-shape::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 15px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 4px;
+        }
+
+        .watch-shape::before { top: -12px; }
+        .watch-shape::after { bottom: -12px; }
+
+        /* Headphones Shape */
+        .headphones-shape {
+            width: 80px;
+            height: 70px;
+            position: relative;
+        }
+
+        .headphones-shape::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255,255,255,0.9);
+            border-radius: 50% 50% 0 0;
+            border-bottom: none;
+        }
+
+        .headphones-shape::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 5px;
+            right: 5px;
+            height: 30px;
+            border: 4px solid rgba(255,255,255,0.9);
+            border-radius: 0 0 20px 20px;
+            border-top: none;
+        }
+
+        /* Gamepad Shape */
+        .gamepad-shape {
+            width: 90px;
+            height: 55px;
+            border: 3px solid rgba(255,255,255,0.9);
+            border-radius: 25px;
+            position: relative;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .gamepad-shape::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 50%;
+        }
+
+        .gamepad-shape::after {
+            content: '';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.7);
+            border-radius: 50%;
+        }
+
+        /* Product Tag */
+        .product-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--gold);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            z-index: 3;
+        }
+
+        .product-tag.bestseller {
+            background: #ef4444;
+            color: white;
+        }
+
+        .product-tag.new {
+            background: #22c55e;
+            color: white;
+        }
+
+        /* Product Info */
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+            line-height: 1.4;
+        }
+
+        .product-desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .old-price {
+            color: var(--gray);
+            text-decoration: line-through;
+            font-size: 1rem;
+        }
+
+        .discount {
+            background: #fee2e2;
+            color: #ef4444;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .stars {
+            color: var(--gold);
+        }
+
+        .affiliate-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .affiliate-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .affiliate-note {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+
+        /* WHY US */
+        .why-us {
+            background: var(--light);
+            padding: 4rem 5%;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* DISCLAIMER */
+        .disclaimer {
+            background: #fef3c7;
+            padding: 1.5rem 5%;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #92400e;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 5% 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .categories {
+                gap: 0.5rem;
+            }
+
+            .cat-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* SCROLL ANIMATION */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">MJK<span>Selects</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+        <button class="mobile-menu-btn">☰</button>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-badge">Amazon Affiliate Partner</div>
+        <h1>Top Tech & Gear <span>Picks</span></h1>
+        <p>Handpicked phones, laptops, wearables & accessories. We find the best deals so you don't have to.</p>
+    </section>
+
+    <!-- CATEGORIES -->
+    <div class="categories">
+        <button class="cat-btn active" onclick="filterProducts('all')">All</button>
+        <button class="cat-btn" onclick="filterProducts('phones')">Phones</button>
+        <button class="cat-btn" onclick="filterProducts('laptops')">Laptops</button>
+        <button class="cat-btn" onclick="filterProducts('wearables')">Wearables</button>
+        <button class="cat-btn" onclick="filterProducts('audio')">Audio</button>
+        <button class="cat-btn" onclick="filterProducts('gaming')">Gaming</button>
+    </div>
+
+    <!-- PRODUCTS -->
+    <section class="section" id="products">
+        <div class="section-header fade-in">
+            <h2>Curated Picks</h2>
+            <p>Every product is researched, tested, and personally recommended</p>
+        </div>
+        <div class="products-grid" id="productsGrid">
+            <!-- Products injected by JS -->
+        </div>
+    </section>
+
+    <!-- WHY US -->
+    <section class="why-us">
+        <div class="section-header fade-in">
+            <h2>Why Trust MJK Selects?</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature fade-in">
+                <div class="feature-icon">🔍</div>
+                <h3>Deep Research</h3>
+                <p>We compare specs, read real reviews, and test before recommending</p>
+            </div>
+            <div class="feature fade-in">
+                <div class="feature-icon">💰</div>
+                <h3>Best Prices</h3>
+                <p>We track price drops and highlight the best deals daily</p>
+            </div>
+            <div class="feature fade-in">
+                <div class="feature-icon">⚡</div>
+                <h3>Quick Updates</h3>
+                <p>Our picks refresh weekly so you always see current top products</p>
+            </div>
+            <div class="feature fade-in">
+                <div class="feature-icon">🛡️</div>
+                <h3>Honest Picks</h3>
+                <p>We only recommend products we'd buy ourselves. No paid placements.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DISCLAIMER -->
+    <div class="disclaimer">
+        <strong>Affiliate Disclosure:</strong> MJK Selects participates in the Amazon Services LLC Associates Program. We earn a commission when you buy through our links — at no extra cost to you.
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 MJK Selects. All rights reserved.</p>
+        <p>Made with passion by a 14-year-old who loves tech.</p>
+        <div class="social-links">
+            <a href="#">TikTok</a>
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
+        </div>
+    </footer>
+
+    <script>
+        // PRODUCT DATA - Replace links with your Amazon Affiliate links
+        const products = [
+            {
+                id: 1,
+                name: "iPhone 15 Pro Max",
+                category: "phones",
+                desc: "Titanium build, A17 Pro chip, best camera system",
+                price: "$1,199",
+                oldPrice: "$1,299",
+                discount: "8% OFF",
+                rating: "4.8",
+                reviews: "2,341",
+                shape: "phone-shape",
+                bgClass: "phones",
+                tag: "bestseller",
+                affiliateLink: "https://amazon.com/dp/REPLACE-WITH-YOUR-LINK"
+            },
+            {
+                id: 2,
+                name: "Samsung Galaxy S24 Ultra",
+                category: "phones",
+                desc: "S Pen, AI features, 200MP camera",
+                price: "$1,299",
+                oldPrice: null,
+                discount: null,
+                rating: "4.7",
+                reviews: "1,876",
+                shape: "phone-shape",
+                bgClass: "phones",
+                tag: "new",
+                affiliateLink: "https://amazon.com/dp/REPLACE-WITH-YOUR-LINK"
+            },
+            {
+                id: 3,
+                name: "MacBook Air M3",
+                category: "laptops",
+                desc: "18-hour battery, silent design, perfect for students",
+                price: "$1,099",
+                oldPrice: "$1,299",
+                discount: "15% OFF",
+                rating: "4.9",
+                reviews: "5,432",
+                shape: "laptop-shape",
+                bgClass: "laptops",
+                tag: "bestseller",
+                affiliateLink: "https://amazon.com/dp/REPLACE-WITH-YOUR-LINK"
+            },
+            {
+                id: 4,
+                name: "ASUS ROG Zephyrus G14",
+                category: "laptops",
+                desc: "RTX 4060, 165Hz display, portable gaming beast",
+                price: "$1,449",
+                oldPrice: "$1,599",
+                discount: "9% OFF",
+                rating: "4.6",
+                reviews: "892",
+                shape: "laptop-shape",
+                bgClass: "laptops",
+                tag: null,
+                affiliateLink: "https://amazon.com/dp/REPLACE-WITH-YOUR-LINK"
+            },
+            {
+                id: 5,
+                name: "Apple Watch Series 9",
+                category: "wearables",
+                desc: "Double tap gesture, health tracking, always-on display",
+                price: "$399",
+                oldPrice: "$429",
+                discount: "7% OFF",
+                rating: "4.8",
+                reviews: "3,210",
+                shape: "watch-shape",
+                bgClass: "wearables",
+                tag: "bestseller",
+                affiliateLink: "https://amazon.com/dp/REPLACE-WITH-YOUR-LINK"
+            },
+            {
+                id: 6,
+                name: "Samsung Galaxy Watch 6",
+                category: "wearables",
+                desc: "Body composition, sleep coaching, durable design",
+                price: "$299",
+                oldPrice: "$329",
+                discount: "9% OFF",
+                rating: "4.5",
+                reviews: "1,543",
+                shape: "watch-shape",
+                bgClass: "wearables",
+                tag: null,
+                affiliateLink: "https://amazon.com/dp/REPLACE-WITH-YOUR-LINK"
+            },
+            {
+                id: 7,
+                name: "Sony WH-1000XM5",
+                category: "audio",
+                desc: "Best noise canceling, 30-hour battery, premium comfort",
+                price: "$348",
+                oldPrice: "$399",
+                discount: "13% OFF",
+                rating: "4.7",
+                reviews: "4,567",
+                shape: "headphones-shape",
+                bgClass: "audio",
+                tag: "bestseller",
+                affiliateLink: "https://amazon.com/dp/REPLACE-WITH-YOUR-LINK"
+            },
+            {
+                id: 8,
+                name: "AirPods Pro 2",
+                category: "audio",
+                desc: "Adaptive audio, USB-C, seamless Apple integration",
+                price: "$199",
+                oldPrice: "$249",
+                discount: "20% OFF",
+                rating: "4.8",
+                reviews: "8,901",
+                shape: "headphones-shape",
+                bgClass: "audio",
+                tag: null,
+                affiliateLink: "https://amazon.com/dp/REPLACE-WITH-YOUR-LINK"
+            },
+            {
+                id: 9,
+                name: "PlayStation 5 Slim",
+                category: "gaming",
+                desc: "1TB storage, 4K gaming, exclusive titles",
+                price: "$499",
+                oldPrice: null,
+                discount: null,
+                rating: "4.9",
+                reviews: "12,345",
+                shape: "gamepad-shape",
+                bgClass: "gaming",
+                tag: "bestseller",
+                affiliateLink: "https://amazon.com/dp/REPLACE-WITH-YOUR-LINK"
+            },
+            {
+                id: 10,
+                name: "Xbox Series X",
+                category: "gaming",
+                desc: "Most powerful console, Game Pass, quick resume",
+                price: "$499",
+                oldPrice: null,
+                discount: null,
+                rating: "4.7",
+                reviews: "6,789",
+                shape: "gamepad-shape",
+                bgClass: "gaming",
+                tag: null,
+                affiliateLink: "https://amazon.com/dp/REPLACE-WITH-YOUR-LINK"
+            },
+            {
+                id: 11,
+                name: "Google Pixel 8 Pro",
+                category: "phones",
+                desc: "Best AI camera, 7 years updates, pure Android",
+                price: "$799",
+                oldPrice: "$999",
+                discount: "20% OFF",
+                rating: "4.6",
+                reviews: "1,234",
+                shape: "phone-shape",
+                bgClass: "phones",
+                tag: "new",
+                affiliateLink: "https://amazon.com/dp/REPLACE-WITH-YOUR-LINK"
+            },
+            {
+                id: 12,
+                name: "Lenovo Legion Pro 7i",
+                category: "laptops",
+                desc: "i9-13900HX, RTX 4080, 240Hz display",
+                price: "$2,299",
+                oldPrice: "$2,599",
+                discount: "12% OFF",
+                rating: "4.5",
+                reviews: "456",
+                shape: "laptop-shape",
+                bgClass: "laptops",
+                tag: null,
+                affiliateLink: "https://amazon.com/dp/REPLACE-WITH-YOUR-LINK"
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        function renderProducts(filter = 'all') {
+            const grid = document.getElementById('productsGrid');
+            const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+
+            grid.innerHTML = filtered.map(product => `
+                <div class="product-card fade-in visible">
+                    <div class="product-visual ${product.bgClass}">
+                        <div class="visual-bg ${product.bgClass}"></div>
+                        ${product.tag ? `<span class="product-tag ${product.tag}">${product.tag.toUpperCase()}</span>` : ''}
+                        <div class="device-shape ${product.shape}"></div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${product.category}</div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-desc">${product.desc}</div>
+                        <div class="product-price">
+                            <span class="price">${product.price}</span>
+                            ${product.oldPrice ? `<span class="old-price">${product.oldPrice}</span>` : ''}
+                            ${product.discount ? `<span class="discount">${product.discount}</span>` : ''}
+                        </div>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span>${product.rating} (${product.reviews} reviews)</span>
+                        </div>
+                        <a href="${product.affiliateLink}" class="affiliate-btn" target="_blank">Check Price on Amazon →</a>
+                        <div class="affiliate-note">As an Amazon Associate we earn from qualifying purchases</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterProducts(category) {
+            currentFilter = category;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if ((category === 'all' && btn.textContent === 'All') || 
+                    (category !== 'all' && btn.textContent.toLowerCase().includes(category))) {
+                    btn.classList.add('active');
+                }
+            });
+            renderProducts(category);
+        }
+
+        // INIT
+        renderProducts();
+
+        // SCROLL ANIMATIONS
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
